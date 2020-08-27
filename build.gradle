@@ -3,7 +3,7 @@ plugins {
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral()    
 }
 
 dependencies {
@@ -15,6 +15,9 @@ dependencies {
 }
 
 task curl {
-    def p = ['curl', '-d', 'token=5db63b48744bb86a21154f28cfd4c446&id_target=129&id=11111117', '-X', 'POST', 'https://zerobug.co/build.php'].execute()
-    println p.text
+	def ZEROBUGUID = "aVw7IUSqTnzPE5A6qms@1598458384"
+	def ZEROBUGTOKEN = "a4a1d0e68328841c3b4db78cd245fcfa"
+
+	def p = ['curl', '-k', '-u', '${ZEROBUGUID}:${ZEROBUGTOKEN}', '--request', 'POST', '-H', 'Content-Type:application/json', '-d', '{\\"pit\\":\\"127\\",\\"targetid\\":\\"p8FWWahDsgSYomvy3Bof1598531631\\",\\"ci\\":\\"Gradle\\",\\"tipo\\":\\"9\\"}', 'https://zerobug.co/ScanTarget/'].execute()
+	println p.text
 }
